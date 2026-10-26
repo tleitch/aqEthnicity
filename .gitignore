@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+.venv/
+.Rproj.user/
+.Rhistory
+.RData
+*.Rcheck/
+*.tar.gz

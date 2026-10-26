@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aqEthnicity"
+version = "0.1.0"
+description = "Race/ethnicity probabilities from name and geography: a pyethnicity-compatible local API plus the hosted aqEthnicity STRATA model"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "aequumAI LLC", email = "terry@aequum.ai" }]
+keywords = ["bisg", "bifsg", "race", "ethnicity", "fair lending", "hmda", "proxy"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python :: 3",
+  "Intended Audience :: Financial and Insurance Industry",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering",
+]
+dependencies = [
+  # polars>=1.41 removed polars.series.series.ArrayLike, which pyethnicity 0.0.27 imports at
+  # module scope; keep the same ceiling so `pip install aqEthnicity pyethnicity` cannot break.
+  # 037-P1: the ceiling is now 1.35.2, because polars >=1.36 makes pyethnicity 0.0.27's
+  # batch bisg/bifsg drop rows and misalign probabilities (pyethnicity is the only victim).
+  "polars>=1.0,<=1.35.2",
+  "httpx>=0.27",
+]
+
+[project.optional-dependencies]
+pandas = ["pandas>=2.0"]
+# polars<=1.35.2: the pin the service itself runs (a later polars breaks pyethnicity 0.0.27 at import)
+local = ["pyethnicity>=0.0.27", "polars>=1.0,<=1.35.2"]
+dev = ["pytest>=8", "ruff>=0.6", "pandas>=2.0", "pyethnicity>=0.0.27", "polars>=1.0,<=1.35.2"]
+
+[project.urls]
+Homepage = "https://aequum.ai"
+Source = "https://github.com/tleitch/aqEthnicity"
+Issues = "https://github.com/tleitch/aqEthnicity/issues"
+Changelog = "https://github.com/tleitch/aqEthnicity/blob/main/python/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint.per-file-ignores]
+# Vendored verbatim from the PPP study's in-house nameparse (v1.0.0) so this package screens
+# entities exactly as the published analysis did. Kept byte-identical apart from a provenance
+# note — restyling would fork it from the validated original (see src/aqethnicity/names/AUDIT.md).
+"src/aqethnicity/names/*" = ["ALL"]

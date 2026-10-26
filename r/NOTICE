@@ -1,0 +1,12 @@
+aqEthnicity (R client)
+Copyright 2026 aequumAI LLC
+
+This product includes software developed at aequumAI LLC (https://aequum.ai).
+
+The Apache License 2.0 covers THIS SOFTWARE ONLY: the R client source code in this package. It does
+not cover, and grants no rights in:
+
+  * the hosted aqEthnicity service (the API and everything it runs, including the STRATA service),
+    which is provided under its own terms of use and requires an API key;
+  * the models (including the STRATA model weights) and the data tables used by the hosted service;
+  * the aequumAI and aqEthnicity names and marks.

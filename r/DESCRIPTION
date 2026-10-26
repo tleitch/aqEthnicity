@@ -1,0 +1,25 @@
+Package: aqEthnicity
+Type: Package
+Title: Race and Ethnicity Probabilities from Names and Places (Hosted STRATA Client)
+Version: 0.1.0
+Authors@R: c(
+    person("Terry", "Leitch", email = "terry@aequum.ai", role = c("aut", "cre")),
+    person("aequumAI LLC", role = c("cph", "fnd")))
+Description: A client for the hosted 'aqEthnicity' service. It estimates race and
+    ethnicity probabilities for groups of people from a surname, a first name and a
+    place: Bayesian Improved Surname Geocoding (BISG) and its first-name extension
+    (BIFSG), the 'STRATA' name-and-address model with an uncertainty index, and an
+    address geocoding check. Requests are columnar and batched, and
+    'predict_race_aq()' returns a data frame with 'wru'-style probability columns.
+    Results are statistical estimates for populations, not statements about any
+    individual. An API key is required; see the README.
+License: Apache License (>= 2)
+URL: https://aequum.ai, https://github.com/tleitch/aqEthnicity
+BugReports: https://github.com/tleitch/aqEthnicity/issues
+Depends: R (>= 4.1.0)
+Imports: httr2 (>= 1.0.0), jsonlite
+Suggests: testthat (>= 3.0.0), httptest2, askpass, withr
+Config/testthat/edition: 3
+Encoding: UTF-8
+Language: en-US
+Config/roxygen2/version: 8.1.1
